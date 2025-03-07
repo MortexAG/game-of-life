@@ -15,19 +15,29 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # 🔹 Install Raylib (Ubuntu)
       - name: Install Dependencies (Linux)
         if: runner.os == 'Linux'
-        run: sudo apt install -y libraylib-dev
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential cmake git libx11-dev libxcursor-dev libxrandr-dev libxi-dev libgl1-mesa-dev
+          git clone --depth=1 https://github.com/raysan5/raylib.git
+          cd raylib/src
+          make PLATFORM=PLATFORM_DESKTOP
+          sudo make install
+          cd ../..
+          rm -rf raylib  # Clean up source files
 
+      # 🔹 Install Raylib (macOS)
       - name: Install Dependencies (macOS)
         if: runner.os == 'macOS'
         run: brew install raylib
 
+      # 🔹 Install Raylib (Windows)
       - name: Install Dependencies (Windows)
         if: runner.os == 'Windows'
         run: |
           choco install raylib
-          echo "Using pre-installed Raylib"
 
       - name: Build Game
         run: make
