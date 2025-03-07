@@ -2,7 +2,8 @@
 # Game of Life (Raylib)
 
 A simple implementation of Conway's Game of Life using **Raylib**.
-
+Patterns were generated using ChatGPT.
+I was mainly concerned with the game logic and menus.
 ## Features
 - Toggleable side menu (**TAB**) to select different starting patterns.
 - Various predefined patterns (Still Lifes, Oscillators, Spaceships).
